@@ -5,10 +5,8 @@ from django.shortcuts import render
 from listings.models import Band
 from listings.models import Listing
 
-
 def home(request):
-        return HttpResponse('<h1>Page d\'accueil</h1>')
-
+        return render(request, 'listings/home.html')
 
 def listings(request):
         listings = Listing.objects.all()
@@ -16,17 +14,14 @@ def listings(request):
                 'listings/listings.html',
                 context={'articles': listings})
 
-
 def contact(request):
         return render(request, 'listings/contact.html')
-
 
 def hello(request):
         bands = Band.objects.all()
         return render(request,
                 'listings/hello.html',
                 context={'bands': bands})
-
 
 def about(request):
         return render(request, 'listings/about.html')

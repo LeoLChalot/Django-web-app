@@ -1,0 +1,10 @@
+{% extends 'listings/base.html' %} {% block content %}
+<h1>Article : {{ listing.title }}</h1>
+<h2>Description :</h2> 
+<p>{{ listing.description }}</p>
+<q>{{ listing.band }}</q>
+
+<br>
+<a href="{% url 'listings-list' %}">Retour</a>
+
+{% endblock %}

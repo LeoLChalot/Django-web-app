@@ -11,11 +11,11 @@
 	<body>
         <header>
             <nav>
-                <a href="http://localhost:8000/">Home</a>
-                <a href="http://localhost:8000/hello/">Bands</a>
-                <a href="http://localhost:8000/listings/">Merch</a>
-                <a href="http://localhost:8000/about/">A propos</a>
-                <a href="http://localhost:8000/contact/">Contact</a>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'bands-list' %}">Bands</a>
+                <a href="{% url 'listings-list' %}">Merch</a>
+                <a href="{% url 'about' %}">A propos</a>
+                <a href="{% url 'contact' %}">Contact</a>
             </nav>
         </header>
 		<div class="container">{% block content %}{% endblock %}</div>

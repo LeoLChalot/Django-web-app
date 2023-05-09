@@ -1,10 +1,25 @@
 {% extends 'listings/base.html' %} {% block content %}
 <h1>Bands</h1>
-<p>Mes {{ bands|length }} groupes préférés sont :</p>
+<h2>{{ bands|length }} groupes sont actuellement enregistés</h2>
 
-<ul>
+<div class="band-card-wrapper">
+
 	{% for band in bands %}
-	<li><a href="{% url 'band-detail' band.id %}">{{ band.name }}</a></li>
+	<div class="band-card">
+		<p>{{ band.name }}</p>
+		<a href="{% url 'band-detail' band.id %}">Détails</a>
+	</div>
 	{% endfor %}
-</ul>
+
+</div>
+
+
+
+
+
+
+	
+	
+	
+
 {% endblock %}

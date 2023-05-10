@@ -1,9 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.core.mail import send_mail
+from django.shortcuts import redirect
 
 # * Import du modèle Band
 from listings.models import Band
 from listings.models import Listing
+
+from listings.forms import ContactUsForm
 
 def home(request):
         return render(request, 'listings/home.html')
@@ -21,7 +25,18 @@ def listing_detail(request, id):
                 { 'listing': listing })
 
 def contact(request):
-        return render(request, 'listings/contact.html')
+        # print('Lam éthode de requête est : ', request.method)
+        # print('Les données POST sont : ', request.POST)
+        if request.method == 'POST':
+                form = ContactUsForm(request.POST)
+                if form.is_valid():
+                        send_mail(subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via MerchEx Contact Us form', message=form.cleaned_data['message'], from_email=form.cleaned_data['email'], recipient_list=['admin@merchex.xyz'],
+                        )
+                        return redirect('listings/email-sent.html')
+        else:
+                form = ContactUsForm()
+
+        return render(request, 'listings/contact.html', {'form':form})
 
 def band_list(request):
         bands = Band.objects.all()

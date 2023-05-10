@@ -1,10 +1,16 @@
 {% extends 'listings/base.html' %} {% block content %}
-<h1>Articles</h1>
-<p>Liste des différents articles :</p>
+<div class="d-flex flex-column align-items-center">
+	<h1>Articles</h1>
+	<p>Liste des différents articles :</p>
 
-<ul>
-	{% for listing in listings %}
-	<li><a href="{% url 'listing-detail' listing.id %}">{{ listing.title }}</a></li>
-	{% endfor %}
-</ul>
+	<div class="list-group w-50">
+		{% for listing in listings %}
+		<a
+			class="list-group-item list-group-item-action list-group-item-light"
+			href="{% url 'listing-detail' listing.id %}"
+			>{{ listing.title }}</a
+		>
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}

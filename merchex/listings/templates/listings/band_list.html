@@ -1,17 +1,15 @@
 {% extends 'listings/base.html' %} {% block content %}
-<h1>Bands</h1>
-<h2>{{ bands|length }} groupes sont actuellement enregistés</h2>
+<div class="d-flex flex-column align-items-center">
+	<h1>Bands</h1>
+	<h2>{{ bands|length }} groupes sont actuellement enregistés</h2>
 
-<div class="band-card-wrapper">
-
-	{% for band in bands %}
-	<div class="band-card">
-		<p>{{ band.name }}</p>
-		<a href="{% url 'band-detail' band.id %}">Détails</a>
+	<div class="list-group w-50">
+		{% for band in bands %}
+		<a class="list-group-item list-group-item-action list-group-item-light" href="{% url 'band-detail' band.id %}"
+			>{{ band.name }}</a
+		>
+		{% endfor %}
 	</div>
-	{% endfor %}
-
 </div>
-
 
 {% endblock %}

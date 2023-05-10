@@ -1,9 +1,14 @@
 {% extends 'listings/base.html' %} {% block content %}
-<h1>Contact</h1>
-<p>Nous sommes là pour vous aider.</p>
-<form action="" method="post" id="contact-form" novalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="envoyer" id="submit">
-</form>
+<div class="d-flex flex-column align-items-center">
+    <h1>Contact</h1>
+    <p>Nous sommes là pour vous aider.</p>
+    <form action="" method="post" class="d-flex flex-column align-items-center">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form }}
+        </div>
+        <input type="submit" value="envoyer" class="btn btn-primary m-4">
+    </form>
+</div>
+
 {% endblock %}

@@ -1,15 +1,22 @@
 {% extends 'listings/base.html' %} {% block content %}
-<h1>Band : {{ band.name }}</h1>
-<!-- <p>L'identifiant est {{ band.id }}</p> -->
-<ul class="list-group list-group-flush">
-    <li class="list-group-item">Genre : {{ band.get_genre_display }}</li>
-    <li class="list-group-item">Année de formation : {{ band.year_formed }}</li>
-    <li class="list-group-item">Actif : {{ band.active|yesno }}</li>
-    <li class="list-group-item">Homepage : {{ band.official_homepage }}</li>
-</ul>
+<div class="d-flex flex-column align-items-center">
+	<h1>Band : {{ band.name }}</h1>
+	<!-- <p>L'identifiant est {{ band.id }}</p> -->
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">Genre : {{ band.get_genre_display }}</li>
+		<li class="list-group-item">Année de formation : {{ band.year_formed }}</li>
+		<li class="list-group-item">Actif : {{ band.active|yesno }}</li>
+		<li class="list-group-item">Homepage : {{ band.official_homepage }}</li>
+		<li class="list-group-item">Bio : {{ band.biography }}</li>
+	</ul>
 
-<p>{{ band.biography }}</p>
-
-<a class="nav-link" href="{% url 'bands-list' %}">Retour</a>
-
+	<div class="btn-container container d-flex justify-content-around mt-4">
+		<a class="btn btn-secondary" href="{% url 'bands-list' %}">Retour</a>
+		<a class="btn btn-warning" href="{% url 'band-update' band.id %}">Editer</a>
+        <a class="btn btn-danger" href="{% url 'band-delete' band.id %}">Supprimer</a>
+	</div>
+    {% if messages %}
+	<div {% if message.tags %} class="{{ message.tags }}"{% endif %}></div>
+	{% endif %}
+</div>
 {% endblock %}

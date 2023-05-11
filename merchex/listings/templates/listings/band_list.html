@@ -10,6 +10,9 @@
 		>
 		{% endfor %}
 	</div>
+	{% if messages %}
+	<div {% if message.tags %} class="{{ message.tags }}"{% endif %}></div>
+	{% endif %}
 </div>
 
 {% endblock %}

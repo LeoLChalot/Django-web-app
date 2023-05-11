@@ -1,11 +1,14 @@
 {% extends 'listings/base.html' %} {% block content %}
 <div class="d-flex flex-column align-items-center">
-<h1>Article : {{ listing.title }}</h1>
-<h2>Description :</h2> 
-<p>{{ listing.description }}</p>
-<q>{{ listing.band }}</q>
+	<h1>Article : {{ listing.title }}</h1>
+	<h2>Description :</h2>
+	<p>{{ listing.description }}</p>
+	<q>{{ listing.band }}</q>
 
-<br>
-<a href="{% url 'listings-list' %}">Retour</a>
+	<div class="btn-container container d-flex justify-content-around m-4">
+		<a class="btn btn-secondary" href="{% url 'listings-list' %}">Retour</a>
+		<a class="btn btn-warning" href="{% url 'listing-update' listing.id %}">Editer</a>
+        <a class="btn btn-danger" href="{% url 'listing-delete' listing.id %}">Supprimer</a>
+	</div>
 </div>
 {% endblock %}
